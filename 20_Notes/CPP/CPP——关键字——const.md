@@ -1,9 +1,9 @@
-@[toc]
-
-# 1. const在类成员函数右侧
+# const在类成员函数右侧
 
 ![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/45f6454de50e4f7582ee286ad1e42e8a.png)
-上图勾选意思是可以调用对应的成员函数。
+上图来自侯捷的面相对象高级开发视频课程：
+
+勾选意思是可以调用对应的成员函数。
 当成员函数的const版本和non-const版本同时存在，则const object只能调用const版本，non-const object只能调用non-const版本。
 
 
@@ -34,18 +34,21 @@ int main(void)
 	return 0;
 }
 ```
-## 1.1 const调用限制
+## 1. const调用限制
+
 1. 相同成员函数的const和non-const版本同时存在，const object只会（只能）调用const版本，non-const object只会（只能）调用non-const版本。
 2. non-const成员函数可调用const成员函数，反之则不行，会引发：error C2662:cannot convert 'this' pointer from 'const class X' to 'class X&'. Conversion loses quali
 3. const对象只能调用const成员函数，不能调用non-const成员函数。non-const对象则两种成员函数都能调用
 
-## 1.2 const成员函数返回*this
+## 2. const成员函数返回*this
+
 返回的是常量对象，不能改变对象内部数据
 
-## 1.3 const是作为函数的签名
+## 3. const是作为函数的签名
+
 const关键字：如果两个函数同名、参数也相同，只是一个又const，一个没有，这是属于两个函数，没有歧义。const也算作签名的一部分。
 
-# 2. 类成员声明为const数据成员
+# 类成员声明为const数据成员
 > 注：
 > 1. c++11之前，类的数据成员为非静态const时，需通过初始化列表初始化；
 > 2. c++11 支持类的数据成员为非静态const时，可以直接在声明的时候初始化，例如const int m_a = 20;
@@ -81,11 +84,12 @@ int main(void)		//< c++中形参void和空着等效
 }
 ```
 
-# 3. 参考书籍
-C++ Primer Plus（第六版）——12.7.1队列类 ——3. 类方法
 
 
-# 4. Const声明迭代器
+> 参考书籍：C++ Primer Plus（第六版）——12.7.1队列类 ——3. 类方法
+
+
+# Const声明迭代器
 STL迭代器系以指针为根据塑模出来，所以迭代器的作用就像个T*
 
 ```cpp
@@ -102,7 +106,7 @@ STL迭代器系以指针为根据塑模出来，所以迭代器的作用就像�
 
 > 参考——effective c++（第三版）—— 条款3 尽可能使用const
 
-# 5. 成员函数相互调用，避免代码重复
+# 成员函数相互调用，避免代码重复
 ```cpp
 class MyString
 {
@@ -134,7 +138,7 @@ void Test02()
 	cout << mystr[0] << endl;
 }
 ```
-# 6. bitwise constness 和 logical constness
+# bitwise constness 和 logical constness
 > 参考effective c++ 条款3 尽可能使用const （第三版）
 
 bitwise(又称physical constness) 和 logical constness一直是个哲学思辨，历来两方拥护者都有争议
@@ -189,9 +193,10 @@ std::size_t CTextBlock::length() const
 ```
 
 
-# 7. const引用传递替代值传递
+# const引用传递替代值传递
 
-## 7.1. 不适用情况
+## 1. 不适用情况
+
 - 内置类型
 因为引用本质也是用指针实现的，对于内置类型值传递比引用传递效率高
 

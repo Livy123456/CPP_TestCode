@@ -38,5 +38,9 @@
 *.out
 *.app
 
+# unvisible directories
+.vs/
+
 # others
 *.txt
+*.db

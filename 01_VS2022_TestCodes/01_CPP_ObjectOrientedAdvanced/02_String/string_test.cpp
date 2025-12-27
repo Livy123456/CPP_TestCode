@@ -5,6 +5,9 @@ using namespace std;
 
 int main()
 {
+	std::cout << __cplusplus << std::endl;
+
+
   String s1("hello"); 
   String s2("world");
     
